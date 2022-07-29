@@ -9,12 +9,12 @@ const foodsSchema = new Schema(
         amount:{
             type: Number,
         },
-        ingredients: {
+        week: {
             type: String,
         },
-        steps:{
-            type: String,
-        }
+        budget:{
+            type: Number,
+        },
       },
 )
 
