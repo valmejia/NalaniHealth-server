@@ -15,6 +15,9 @@ const foodsSchema = new Schema(
         budget:{
             type: Number,
         },
+        fav:{
+            type: Boolean,
+        }
       },
 )
 

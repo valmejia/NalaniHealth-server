@@ -2,10 +2,7 @@ const { Schema, model } = require("mongoose")
 
 const goalTrackerSchema = new Schema(
     {
-        name: {
-          type: String,
-         required: true, 
-        },
+       
         assessment:{
             type: Number,
             required: true,
@@ -16,7 +13,7 @@ const goalTrackerSchema = new Schema(
         week: {
             type: String,
         },
-        
+
       },
 )
 
