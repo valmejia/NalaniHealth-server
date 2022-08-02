@@ -5,15 +5,30 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      required: true,
+      unique: true,
+      
     },
     fullname: {
       type: String,
+      required: true,
     },
     email: {
       type: String,
+      required: true,
+      unique: true,
     },
-    password: String,
+    password:{
+      type: String,
+      required: true,
+    },
+    img:{
+      type: String, 
+      default: "/broken-image.jpg"
+    }
+    // fav:[{
+    //  type:  type.Schema.types.objectId,
+    // }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
