@@ -1,18 +1,14 @@
 const { Schema, model } = require("mongoose")
+const Days = mongoose.model('Days')
+const Recipes = mongoose.model('Recipes')
 
 const MealPlanSchema = new Schema(
     {
-        week: {
-          type: String,
-          required: true,
-        },
-        assessment:{
-            type: String,
-            required: true,
-        },
+      week: {
+        type: Schema.ObjectId, ref: 'Days'
+    },
         recipe:{
-            type: String,
-            required: true,
+          type: Schema.ObjectId, ref: 'Recipes'
         }
         
       },

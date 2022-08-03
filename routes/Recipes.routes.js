@@ -1,9 +1,8 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const Recipe = require("../models/Recipes.model");
-const recipeModel = require("../models/Recipes.model");
 
-router.get("/recipeIdeasForm", async (req, res) => {
+router.get("/recipeIdeasList", async (req, res) => {
   try {
     const recipes = await Recipe.find();
     res.json(recipes);
@@ -11,10 +10,11 @@ router.get("/recipeIdeasForm", async (req, res) => {
     console.log(err);
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const alumno = await Recipe.findById(id);
+    const recipes = await Recipe.findById(id);
     res.json(recipes);
   } catch (err) {
     console.log(err);
@@ -22,11 +22,11 @@ router.get("/:id", async (req, res) => {
 });
 
 //post
-router.post("/recipeIdeasList", (req, res) => {
+router.post("/recipeIdeasForm", (req, res) => {
   const { body } = req;
   console.log(body);
 
-  Recipes.create(body)
+  Recipe.create(body)
     .then((result) => {
       res.json(result);
     })
