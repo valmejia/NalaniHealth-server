@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const Recipe = require("../models/Recipes.model");
+const FoodShop = require("../models/Food.model");
 
-router.get("/recipeIdeasList", async (req, res) => {
+router.get("/foodShoppingList", async (req, res) => {
   try {
-    const recipes = await Recipe.find();
-    res.json(recipes);
+    const foods = await FoodShop.find();
+    res.json(foods);
   } catch (err) {
     console.log(err);
   }
@@ -14,47 +14,46 @@ router.get("/recipeIdeasList", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const recipe = await Recipe.findById(id);
-    res.json(recipe);
+    const food = await FoodShop.findById(id);
+    res.json(food);
   } catch (err) {
     console.log(err);
   }
 });
 
 //post
-router.post("/recipeIdeasForm", (req, res) => {
+router.post("/foodShopForm", (req, res) => {
   const { body } = req;
   console.log(body);
 
-  Recipe.create(body)
+  FoodShop.create(body)
     .then((result) => {
       res.json(result);
     })
     .catch(console.log);
 });
 
-//edit
+///update
 router.put("/:id", (req, res) => {
   const { body } = req;
   const { id } = req.params;
 
   console.log(body);
 
-  Recipe.findByIdAndUpdate(id, body)
+  FoodShop.findByIdAndUpdate(id, body)
     .then((result) => {
       res.json(result);
     })
     .catch(console.log);
 });
 
-//delete
+///delete
 router.delete('/delete/:id', (req, res) =>{
   const { id } = req.params;
-  Recipe.findByIdAndUpdate(id)
+  FoodShop.findByIdAndUpdate(id)
   .then((result) => {
     res.json(result);
   })
   .catch(console.log);
 });
-
 module.exports = router;

@@ -4,13 +4,19 @@ const foodsSchema = new Schema(
     {
         name: {
           type: String,
-         
+         required: true,
+        },
+        product: {
+          type: String,
+          required: true,
         },
         amount:{
             type: Number,
+         
         },
         fav:{
             type: Boolean,
+            
         }
       },
 )
