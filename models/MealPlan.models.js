@@ -1,18 +1,23 @@
-const { Schema, model } = require("mongoose")
-const Days = mongoose.model('Days')
-const Recipes = mongoose.model('Recipes')
+const { Schema, model } = require("mongoose");
 
-const MealPlanSchema = new Schema(
-    {
-      week: {
-        type: Schema.ObjectId, ref: 'Days'
-    },
-        recipe:{
-          type: Schema.ObjectId, ref: 'Recipes'
-        }
-        
-      },
-)
+const MealPlanSchema = new Schema({
+  days: {
+    type: String,
+  },
+  recipe: {
+    type: Schema.ObjectId,
+    ref: "Recipes",
+  },
+  assessment: {
+    type: String,
+  },
+  date: {
+    type: Date,
+  },
+  food: {
+    type: String,
+  },
+});
 
 const MealPlan = model("MealPlan", MealPlanSchema);
 
