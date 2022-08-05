@@ -5,7 +5,7 @@ const MealPlanSchema = new Schema({
     type: String,
   },
   recipe: {
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Recipes",
   },
   assessment: {

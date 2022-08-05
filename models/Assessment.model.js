@@ -1,8 +1,11 @@
 const { Schema, model } = require("mongoose")
 const AssessmentSchema = new Schema(
     {
-        assessment: {
-            type: Boolean,
+       name: {
+            type: String,
+        },
+        priority: {
+            type: String,
         },
      },
 )

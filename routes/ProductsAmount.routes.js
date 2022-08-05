@@ -38,8 +38,6 @@ router.get("/foodExpensesTracker", async (req, res) => {
     const { body } = req;
     const { id } = req.params;
   
-    console.log(body);
-  
     ProductsAmount.findByIdAndUpdate(id, body)
       .then((result) => {
         res.json(result);
@@ -50,9 +48,9 @@ router.get("/foodExpensesTracker", async (req, res) => {
   //delete
   router.delete('/delete/:id', (req, res) =>{
     const { id } = req.params;
-    ProductsAmount.findByIdAndUpdate(id)
+    ProductsAmount.findByIdAndDelete(id)
     .then((result) => {
-      res.json(result);
+      res.json({deleted: true})
     })
     .catch(console.log);
   });

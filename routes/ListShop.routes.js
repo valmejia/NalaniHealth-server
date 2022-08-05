@@ -24,7 +24,6 @@ router.get("/:id", async (req, res) => {
 //post
 router.post("/foodShopForm", (req, res) => {
   const { body } = req;
-  console.log(body);
 
   FoodShop.create(body)
     .then((result) => {
@@ -38,7 +37,6 @@ router.put("/:id", (req, res) => {
   const { body } = req;
   const { id } = req.params;
 
-  console.log(body);
 
   FoodShop.findByIdAndUpdate(id, body)
     .then((result) => {
@@ -50,9 +48,13 @@ router.put("/:id", (req, res) => {
 ///delete
 router.delete('/delete/:id', (req, res) =>{
   const { id } = req.params;
-  FoodShop.findByIdAndUpdate(id)
+  FoodShop.findByIdAndDelete(id)
   .then((result) => {
-    res.json(result);
+    FoodShop.find()
+    .then((result)=>{
+      res.json(result);
+    })
+    
   })
   .catch(console.log);
 });

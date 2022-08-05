@@ -38,7 +38,6 @@ router.put("/:id", (req, res) => {
   const { body } = req;
   const { id } = req.params;
 
-  console.log(body);
 
   MealPlan.findByIdAndUpdate(id, body)
     .then((result) => {
@@ -50,9 +49,13 @@ router.put("/:id", (req, res) => {
 ///delete
 router.delete('/delete/:id', (req, res) =>{
   const { id } = req.params;
-  MealPlan.findByIdAndUpdate(id)
+  MealPlan.findByIdAndDelete(id)
   .then((result) => {
-    res.json(result);
+    MealPlan.find()
+    .then((result)=>{
+      res.json(result);
+    })
+    
   })
   .catch(console.log);
 });

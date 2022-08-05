@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const Recipe = require("../models/Recipes.model");
+const Assessment = require("../models/Assessment.model");
 
-router.get("/recipeIdeasList", async (req, res) => {
+router.get("/toDoToday", async (req, res) => {
   try {
-    const recipes = await Recipe.find();
-    res.json(recipes);
+    const foods = await Assessment.find();
+    res.json(foods);
   } catch (err) {
     console.log(err);
   }
@@ -14,43 +14,43 @@ router.get("/recipeIdeasList", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const recipe = await Recipe.findById(id);
-    res.json(recipe);
+    const food = await Assessment.findById(id);
+    res.json(food);
   } catch (err) {
     console.log(err);
   }
 });
 
 //post
-router.post("/recipeIdeasForm", (req, res) => {
+router.post("/toDoTodayForm", (req, res) => {
   const { body } = req;
   console.log(body);
 
-  Recipe.create(body)
+ Assessment.create(body)
     .then((result) => {
       res.json(result);
     })
     .catch(console.log);
 });
 
-//edit
+///update
 router.put("/:id", (req, res) => {
   const { body } = req;
   const { id } = req.params;
 
-  Recipe.findByIdAndUpdate(id, body)
+ Assessment.findByIdAndUpdate(id, body)
     .then((result) => {
       res.json(result);
     })
     .catch(console.log);
 });
 
-//delete
+///delete
 router.delete('/delete/:id', (req, res) =>{
   const { id } = req.params;
-  Recipe.findByIdAndDelete(id)
+  Assessment.findByIdAndDelete(id)
   .then((result) => {
-    Recipe.find()
+    Assessment.find()
     .then((result)=>{
       res.json(result);
     })
@@ -58,5 +58,4 @@ router.delete('/delete/:id', (req, res) =>{
   })
   .catch(console.log);
 });
-
 module.exports = router;
